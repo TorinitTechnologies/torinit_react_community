@@ -9,6 +9,8 @@ require("core-js/modules/web.dom-collections.iterator.js");
 
 var _react = _interopRequireWildcard(require("react"));
 
+var _helper = require("./helper");
+
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
@@ -18,54 +20,23 @@ const ReactSpeechToText = props => {
     onListen = () => {},
     onEnd = () => {}
   } = props;
-  let finalTranscriptText = "";
   const [isStarted, setIsStarted] = (0, _react.useState)(false);
-  let recognition = new webkitSpeechRecognition();
-  recognition.continuous = true;
-  recognition.interimResults = true;
+  const [recognizer, setRecognizer] = (0, _react.useState)(null);
   (0, _react.useEffect)(() => {
-    let transpileText = "";
-
-    recognition.onstart = () => {};
-
-    recognition.onerror = () => {};
-
-    recognition.onend = () => {};
-
-    recognition.onresult = function (event) {
-      if (typeof event.results == "undefined") {
-        recognition.onend = null;
-        recognition.stop();
-        return;
-      }
-
-      for (let i = event.resultIndex; i < event.results.length; ++i) {
-        if (event.results[i].isFinal) {
-          finalTranscriptText += event.results[i][0].transcript;
-        } else {
-          transpileText = event.results[i][0].transcript;
-        }
-      }
-
-      onEnd({
-        text: finalTranscriptText,
-        interimText: transpileText
-      });
-    };
+    const recognizer = new _helper.Recognizer({
+      onEnd: props.onEnd
+    });
+    setRecognizer(recognizer);
   }, []);
 
-  const stop = () => {
-    recognition.stop();
-  };
-
   const onToggle = () => {
-    isStarted ? stop() : recognition.start();
+    isStarted ? recognizer.stop() : recognizer.start();
     setIsStarted(!isStarted);
   };
 
-  return /*#__PURE__*/_react.default.createElement("button", {
+  return /*#__PURE__*/_react.default.createElement("div", {
     onClick: onToggle
-  }, isStarted ? "stop" : " start");
+  }, " ", props.children);
 };
 
 var _default = ReactSpeechToText;

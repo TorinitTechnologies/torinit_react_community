@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./styles.css";
-import ReactSpeechToText from "./torinit_chrome_speech_text";
+import ReactSpeechToText from "torinit_chrome_speech_text";
 
 export default function App() {
   const [originalText, setText] = useState("");
