@@ -1,0 +1,16 @@
+.image-wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    width:fit-content;
+}
+span{
+    cursor: pointer;
+    width: 30px;
+    font-weight: bolder;
+    font-size: 30px;
+}
+img{
+    height: inherit;
+}
