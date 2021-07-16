@@ -1,8 +1,8 @@
 import { useState } from "react";
-import ReactSpeechToText from "./react_chrome_st";
 import "./styles.css";
+import ReactSpeechToText from 'torinit_chrome_speech_to_text'
 
-export default function App() {
+ export default function App() {
   const [originalText, setText] = useState("");
   const [interimTextValue, setInterimText] = useState("");
   return (

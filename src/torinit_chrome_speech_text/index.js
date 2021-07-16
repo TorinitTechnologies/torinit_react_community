@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+
 const ReactSpeechToText = (props) => {
   const { onListen = () => {}, onEnd = () => {} } = props;
   let finalTranscriptText = "";

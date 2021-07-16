@@ -1,14 +1,15 @@
 {
-  "name": "torinit_chrome_speech_text",
-  "version": "0.0.1",
+  "name": "torinit_chrome_speech_to_text",
+  "version": "0.0.2",
   "description": "",
-  "main": " index.js",
-  "module": "index.js",
-  "files": [ "dist"],
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rm -rf dist && NODE_ENV=production babel index.js --out-dir dist --copy-files"
-
   },
   "keywords": [],
   "author": "",
