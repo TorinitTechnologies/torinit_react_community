@@ -1,6 +1,5 @@
 import { useState } from "react";
 import "./styles.css";
-// import ReactSpeechToText from 'torinit_chrome_speech_to_text'
 import ReactSpeechToText from "./torinit_chrome_speech_text";
 
 export default function App() {
@@ -10,17 +9,18 @@ export default function App() {
     <div className="App">
       <ReactSpeechToText
         onEnd={({ text, interimText }) => {
-          setText(originalText + (text || interimText));
-          setInterimText(
-            text?.length === 0 ? interimTextValue + interimText : ""
-          );
+          setText(text);
+          setInterimText(interimText);
         }}
         onToggle={(isListening) => {}}
       >
         <button>Start</button>
       </ReactSpeechToText>
-      {originalText}
-      {/* {interimTextValue} */}
+      <br />
+      <div>
+        {originalText}{" "}
+        <span style={{ color: "#cccccc" }}> {interimTextValue} </span>
+      </div>
     </div>
   );
 }

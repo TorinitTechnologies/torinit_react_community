@@ -16,6 +16,6 @@ const ReactSpeechToText = (props) => {
     setIsStarted(!isStarted);
   };
 
-  return <button onClick={onToggle}>{isStarted ? "stop" : " start"}</button>;
+  return <div onClick={onToggle}> {props.children}</div>;
 };
 export default ReactSpeechToText;
