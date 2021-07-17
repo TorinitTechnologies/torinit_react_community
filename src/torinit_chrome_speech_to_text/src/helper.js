@@ -8,10 +8,9 @@ export class Recognizer {
     this.recognition = new webkitSpeechRecognition();
     this.recognition.continuous = true;
     this.recognition.interimResults = true;
-    this.recognition.lang='hi'
     this.recognition.onstart = () => {};
     this.recognition.onerror = () => {};
-    
+
     this.recognition.onend = () => {};
     this.recognition.onresult = this.onResult;
   }

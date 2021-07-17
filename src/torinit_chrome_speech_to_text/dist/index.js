@@ -18,6 +18,7 @@ function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && 
 const ReactSpeechToText = props => {
   const {
     onListen = () => {},
+    onToggle = () => {},
     onEnd = () => {}
   } = props;
   const [isStarted, setIsStarted] = (0, _react.useState)(false);
@@ -29,13 +30,14 @@ const ReactSpeechToText = props => {
     setRecognizer(recognizer);
   }, []);
 
-  const onToggle = () => {
+  const onToggleHandler = () => {
     isStarted ? recognizer.stop() : recognizer.start();
+    onToggle(!isStarted);
     setIsStarted(!isStarted);
   };
 
   return /*#__PURE__*/_react.default.createElement("div", {
-    onClick: onToggle
+    onClick: onToggleHandler
   }, " ", props.children);
 };
 

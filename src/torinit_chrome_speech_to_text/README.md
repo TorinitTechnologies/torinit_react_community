@@ -1,5 +1,5 @@
+```
 import { useState } from "react";
-import "./styles.css";
 import ReactSpeechToText from "torinit_speech_to_text";
 
 export default function App() {
@@ -7,7 +7,7 @@ export default function App() {
   const [originalText, setText] = useState("");
   const [interimTextValue, setInterimText] = useState("");
   return (
-    <div className="App">
+    <div >
       <ReactSpeechToText
         onEnd={({ text, interimText }) => {
           setText(text);
@@ -27,3 +27,5 @@ export default function App() {
     </div>
   );
 }
+
+```

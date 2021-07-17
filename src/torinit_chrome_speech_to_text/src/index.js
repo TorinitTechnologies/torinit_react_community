@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Recognizer } from "./helper";
 
 const ReactSpeechToText = (props) => {
-  const { onListen = () => {}, onEnd = () => {} } = props;
+  const { onListen = () => {},onToggle=()=>{}, onEnd = () => {} } = props;
   const [isStarted, setIsStarted] = useState(false);
   const [recognizer, setRecognizer] = useState(null);
 
@@ -11,11 +11,13 @@ const ReactSpeechToText = (props) => {
     setRecognizer(recognizer);
   }, []);
 
-  const onToggle = () => {
+  const onToggleHandler = () => {
     isStarted ? recognizer.stop() : recognizer.start();
+    onToggle(!isStarted)
     setIsStarted(!isStarted);
+    
   };
 
-  return <div onClick={onToggle}> {props.children}</div>;
+  return <div onClick={onToggleHandler}> {props.children}</div>;
 };
 export default ReactSpeechToText;
