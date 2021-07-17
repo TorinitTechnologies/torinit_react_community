@@ -46,4 +46,20 @@ export class Recognizer {
   start = () => {
     this.recognition.start();
   };
+  setLang = (lang = "en-US") => {
+    this.stop();
+    setTimeout(() => {
+      this.finalTranscriptText = "";
+      this.recognition = new webkitSpeechRecognition();
+      this.recognition.continuous = true;
+      this.recognition.interimResults = true;
+      this.recognition.onstart = () => {};
+      this.recognition.onerror = () => {};
+
+      this.recognition.onend = () => {};
+      this.recognition.onresult = this.onResult;
+      this.recognition.lang = lang;
+      this.start();
+    }, 400);
+  };
 }
