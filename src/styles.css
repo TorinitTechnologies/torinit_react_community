@@ -1,5 +1,18 @@
+
+button{
+padding: 20px 40px;
+cursor: pointer;
+}
+select{
+  padding: 10px 50px;
+  cursor: pointer;
+  text-align: start;
+
+}
+ 
 .App {
     font-family: sans-serif;
     text-align: center;
   }
+  
   

@@ -32,8 +32,13 @@ const ReactSpeechToText = (props) => {
   }, [stopListening]);
 
   useEffect(() => {
-    if (recognizer) {
+    if (recognizer && isStarted) {
       recognizer.setLang(lang);
+    } else {
+      if (!isStarted) {
+        const recognizer = new Recognizer({ onEnd: props.onEnd, lang: lang });
+        setRecognizer(recognizer);
+      }
     }
   }, [lang]);
 

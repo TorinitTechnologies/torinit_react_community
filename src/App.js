@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./styles.css";
-// import ReactSpeechToText from "torinit_speech_to_text";
-import ReactSpeechToText from "../src/torinit_chrome_speech_to_text/src/index";
+import ReactSpeechToText from "torinit_speech_to_text";
+
 export default function App() {
   const [stopListening, setStopListening] = useState(false);
   const [isListening, setIsListening] = useState(false);
@@ -10,6 +10,7 @@ export default function App() {
   const languages = [
     { label: "English", value: "en-US" },
     { label: "Hindi", value: "hi" },
+    { label: "Marathi", value: "mr" },
   ];
   const [selectedLanguage, setSelectedLanguage] = useState(languages[0].value);
 
@@ -26,7 +27,7 @@ export default function App() {
         stopListening={stopListening}
         lang={selectedLanguage}
       >
-        <button>{isListening ? "Stop" : "Start"}</button>
+        <button>{isListening ? "STOP" : "START"}</button>
       </ReactSpeechToText>
       <br />
       <div>

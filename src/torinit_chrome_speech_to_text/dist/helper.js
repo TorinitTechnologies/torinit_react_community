@@ -9,6 +9,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 class Recognizer {
   constructor(props) {
+    var _this = this;
+
     _defineProperty(this, "finalTranscriptText", "");
 
     _defineProperty(this, "recognition", null);
@@ -50,6 +52,30 @@ class Recognizer {
       this.recognition.start();
     });
 
+    _defineProperty(this, "setLang", function () {
+      let lang = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "en-US";
+
+      _this.stop();
+
+      setTimeout(() => {
+        _this.finalTranscriptText = "";
+        _this.recognition = new webkitSpeechRecognition();
+        _this.recognition.continuous = true;
+        _this.recognition.interimResults = true;
+
+        _this.recognition.onstart = () => {};
+
+        _this.recognition.onerror = () => {};
+
+        _this.recognition.onend = () => {};
+
+        _this.recognition.onresult = _this.onResult;
+        _this.recognition.lang = lang;
+
+        _this.recognition.start();
+      }, 400);
+    });
+
     this.props = props;
     this.finalTranscriptText = "";
     this.recognition = new webkitSpeechRecognition();
@@ -59,6 +85,8 @@ class Recognizer {
     this.recognition.onstart = () => {};
 
     this.recognition.onerror = () => {};
+
+    this.recognition.lang = props.lang || "en-US";
 
     this.recognition.onend = () => {};
 

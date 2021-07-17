@@ -10,7 +10,7 @@ export class Recognizer {
     this.recognition.interimResults = true;
     this.recognition.onstart = () => {};
     this.recognition.onerror = () => {};
-
+    this.recognition.lang = props.lang || "en-US";
     this.recognition.onend = () => {};
     this.recognition.onresult = this.onResult;
   }
@@ -59,7 +59,8 @@ export class Recognizer {
       this.recognition.onend = () => {};
       this.recognition.onresult = this.onResult;
       this.recognition.lang = lang;
-      this.start();
+      this.recognition.start();
+
     }, 400);
   };
 }

@@ -19,7 +19,9 @@ const ReactSpeechToText = props => {
   const {
     onListen = () => {},
     onToggle = () => {},
-    onEnd = () => {}
+    onEnd = () => {},
+    stopListening = false,
+    lang = "en-US"
   } = props;
   const [isStarted, setIsStarted] = (0, _react.useState)(false);
   const [recognizer, setRecognizer] = (0, _react.useState)(null);
@@ -29,6 +31,32 @@ const ReactSpeechToText = props => {
     });
     setRecognizer(recognizer);
   }, []);
+  (0, _react.useEffect)(() => {
+    if (recognizer) {
+      if (stopListening) {
+        recognizer.stop();
+        onToggle(false);
+        setIsStarted(false);
+      } else {
+        if (!isStarted) {
+          recognizer.start();
+        }
+      }
+    }
+  }, [stopListening]);
+  (0, _react.useEffect)(() => {
+    if (recognizer && isStarted) {
+      recognizer.setLang(lang);
+    } else {
+      if (!isStarted) {
+        const recognizer = new _helper.Recognizer({
+          onEnd: props.onEnd,
+          lang: lang
+        });
+        setRecognizer(recognizer);
+      }
+    }
+  }, [lang]);
 
   const onToggleHandler = () => {
     isStarted ? recognizer.stop() : recognizer.start();
