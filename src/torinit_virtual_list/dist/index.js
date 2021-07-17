@@ -17,20 +17,21 @@ function VirtualList(props) {
   const {
     items = [],
     renderItem = item => {},
-    height
+    height,
+    offset = 100
   } = props;
   const [startIndex, setStartIndex] = (0, _react.useState)(0);
   const [itemsToShow, setItemsToShow] = (0, _react.useState)([]);
   (0, _react.useEffect)(() => {
-    setItemsToShow(items.slice(startIndex, 100));
+    setItemsToShow(items.slice(startIndex, offset));
   }, [items.length]);
 
   const onScrollDown = e => {
     const bottom = e.target.scrollHeight - e.target.scrollTop === e.target.clientHeight;
 
     if (bottom) {
-      const newStartIndex = startIndex + 101;
-      const newItemsToShow = items.slice(newStartIndex, newStartIndex + 100);
+      const newStartIndex = startIndex + offset;
+      const newItemsToShow = items.slice(newStartIndex, newStartIndex + offset);
       setStartIndex(newStartIndex);
       setItemsToShow([...itemsToShow, ...newItemsToShow]);
     }

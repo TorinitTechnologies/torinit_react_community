@@ -9,6 +9,7 @@ export default function App() {
       <VirtualList
         items={arr}
         height={400}
+        offset={200} // items to show in each slot
         renderItem={(item) => <div>{item}</div>}
       />
     </div>
