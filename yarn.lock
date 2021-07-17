@@ -10370,6 +10370,11 @@ torinit_speech_to_text@^1.1.7:
   resolved "https://registry.yarnpkg.com/torinit_speech_to_text/-/torinit_speech_to_text-1.1.7.tgz#e7f50a861971299ff3f71fc6c1126fa69ef3b935"
   integrity sha512-PpqJ0C+nX4r024j2kGqQgddSIMEpLfJeBA/Eoah5k8nTwJqbIRvNBVzEw47aXkgl3brzeN9KTaXryrlqXa/cVw==
 
+torinit_virtual_list@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/torinit_virtual_list/-/torinit_virtual_list-1.0.0.tgz#68f3423735bce88eb3d71e4446c24855d975d151"
+  integrity sha512-OwaP7Cnish16b4F0BwJeHGgvLF+PZO/BkS+0A/QtIXvOmjqOhDEw79G8qb5V68Oc/WbgYOqKZ0JS/eSkx9dtWA==
+
 tough-cookie@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/tough-cookie/-/tough-cookie-4.0.0.tgz#d822234eeca882f991f0f908824ad2622ddbece4"
