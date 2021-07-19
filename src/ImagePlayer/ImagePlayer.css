@@ -4,6 +4,7 @@
     justify-content: center;
     width:100%;
     height: 100%;
+    z-index: 10002;
 }
 span{
     cursor: pointer;
@@ -11,14 +12,58 @@ span{
     font-weight: bolder;
     font-size: 30px;
 }
+span:hover{
+    transform: scale(1.25);
+}
 .image-wrapper{
     height: 100%;
+    width: 100%;
 }
 
 .img-imgWrapper{
-    width: 100%;
     height: 100%;
+    width: 100%;
 }
+
+.dot-wrapper{
+    display: flex;
+    justify-content: center;
+}
+
+.dot{
+    width: 10px;
+    cursor: pointer;
+    height: 10px;
+    border-radius: 50%;
+    background-color: white;
+    margin: 10px 5px;
+    z-index: 100000;
+}
+
+.active-dot{
+    background-color: black;
+}
+
+.dot:hover{
+    background-color: darkgray;
+}
+
+.fade {
+    -webkit-animation-name: fade;
+    -webkit-animation-duration: 1.5s;
+    animation-name: fade;
+    animation-duration: 1.5s;
+  }
+  
+  @-webkit-keyframes fade {
+    from {opacity: .4}
+    to {opacity: 1}
+  }
+  
+  @keyframes fade {
+    from {opacity: .4}
+    to {opacity: 1}
+  }
 
 .play-pause-button{
     align-self: center;
@@ -28,3 +73,12 @@ span{
     opacity: 0.5;
     pointer-events: none;
 }
+
+ 
+.backdrop{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: rgba(0,0,0,.75);
+    z-index: 10000;
+} 
