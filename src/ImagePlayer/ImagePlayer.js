@@ -18,24 +18,31 @@ export const ImagePlayer = ({images,timeGap}=props) => {
         else setCurrent(0)
     }
 
-    const handlePlaying=()=>{
-                if(current<images.length-1){
-                    setCurrent(current+1)
-                }
-                else setCurrent(0)
+    if(isPlaying){
+        setTimeout(()=>{
+            handleNext();
+        },timeGap || 2000);
     }
 
     return(
-        <div style={{display:'flex',flexDirection:'column',border:'1px solid',borderRadius:'10px',padding:'40px 10px',height:'200px',width:'fit-content'}}>
-        <div className='image-wrapper'>
-            <span onClick={handlePrev}>{'<'}</span>
-                <img src={images[current]} alt=''/>
-            <span onClick={handleNext}>{'>'}</span>
+        <div style={
+            {display:'flex',
+            flexDirection:'column',
+            border:'1px solid',
+            borderRadius:'10px',
+            padding:'40px 10px',
+            height:'200px',
+            width:'300px'}
+            }>
+        <div className='main-image-wrapper'>
+            <span className={current===0 && 'inactive'} onClick={handlePrev}>{'<'} </span>
+            <div className='image-wrapper'>
+                <img src={images[current]} className='img-imgWrapper' alt=''/>
+            </div>
+            <span className={current===images.length-1 && 'inactive'} onClick={handleNext}>{'>'}</span>
         </div>
-        {isPlaying && <span  onClick={()=>{setInterval(() => {
-            handlePlaying();
-        }, timeGap || 300);}}>{'||'}</span>}
-        {!isPlaying && <span  >{'|>'}</span>}
+        {isPlaying && <span className='play-pause-button' onClick={()=>setPlaying(false)}>{'||'}</span>}
+        {!isPlaying && <span  className='play-pause-button' onClick={()=>setPlaying(true)} >{'|>'}</span>}
         </div>
     )
 }
