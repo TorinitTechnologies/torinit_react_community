@@ -1,3 +1,4 @@
+```
 import {ImagePlayer} from 'torinit_image_player';
 import Apple from './Assets/apple.jpg';
 
@@ -11,3 +12,5 @@ import Apple from './Assets/apple.jpg';
     </div>
   );
 }
+
+```
