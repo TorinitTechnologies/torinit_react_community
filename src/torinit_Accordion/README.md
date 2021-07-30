@@ -1,75 +1,54 @@
 ```
-import { useState } from "react";
-import ReactSpeechToText from "torinit_speech_to_text";
-import "./styles.css";
+
+import Accordion from 'torinit_accordion'
+import './style.css'
+
+
+export const accordionData = [
+    {
+      title: 'Section 1',
+      content: `Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quis sapiente
+      laborum cupiditate possimus labore, hic temporibus velit dicta earum
+      suscipit commodi eum enim atque at? Et perspiciatis dolore iure
+      voluptatem.`
+    },
+    {
+      title: 'Section 2',
+      content: `Lorem ipsum, dolor sit amet consectetur adipisicing elit. Mollitia veniam
+      reprehenderit nam assumenda voluptatem ut. Ipsum eius dicta, officiis
+      quaerat iure quos dolorum accusantium ducimus in illum vero commodi
+      pariatur? Impedit autem esse nostrum quasi, fugiat a aut error cumque
+      quidem maiores doloremque est numquam praesentium eos voluptatem amet!
+      Repudiandae, mollitia id reprehenderit a ab odit!`
+    },
+    {
+      title: 'Section 3',
+      content: `Sapiente expedita hic obcaecati, laboriosam similique omnis architecto ducimus magnam accusantium corrupti
+      quam sint dolore pariatur perspiciatis, necessitatibus rem vel dignissimos
+      dolor ut sequi minus iste? Quas?`
+    }
+  ];
+
 
  export default function App() {
-  const [stopListening, setStopListening] = useState(false);
-  const [isListening, setIsListening] = useState(false);
-  const [originalText, setText] = useState("");
-  const [interimTextValue, setInterimText] = useState("");
-  const languages = [
-    { label: "English", value: "en-US" },
-    { label: "Hindi", value: "hi" },
-    { label: "Marathi", value: "mr" },
-  ];
-  const [selectedLanguage, setSelectedLanguage] = useState(languages[0].value);
-
-  return (
-    <div className="App">
-      <ReactSpeechToText
-        onEnd={({ text, interimText }) => {
-          setText(text);
-          setInterimText(interimText);
-        }}
-        onToggle={(isListening) => {
-          setIsListening(isListening);
-        }}
-        stopListening={stopListening}
-        lang={selectedLanguage}
-      >
-        <button>{isListening ? "STOP" : "START"}</button>
-      </ReactSpeechToText>
-      <br />
-      <div>
-        {originalText}
-        <span style={{ color: "#cccccc" }}> {interimTextValue} </span>
-      </div>
-      <select
-        onChange={(e) => {
-          setSelectedLanguage(e.target.value);
-        }}
-        value={selectedLanguage}
-      >
-        {languages.map((item) => (
-          <option value={item.value} key={item.label}>
-            {item.label}
-          </option>
-        ))}
-      </select>
-    </div>
-  );
-}
-
-
-
-// styles.css
-
-button{
-padding: 20px 40px;
-cursor: pointer;
-}
-
-select{
-  padding: 10px 50px;
-  cursor: pointer;
-  text-align: start;
-
-} 
   
-.App {
-    font-family: sans-serif;
-    text-align: center;
-  }
+  return (
+       
+      <div className="accordion">
+        {accordionData.map(({ title, content }) => (
+          <Accordion title={title} content={content} />
+        ))}
+      </div>
+   );
+}
+
+
+//style.css
+
+.accordion {
+  max-width: 600px;
+  margin: 2rem auto;
+  border-bottom: 1px solid #ffffff
+}
 
 ```

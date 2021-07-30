@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './style.css'
-const Accordion = ({ title, content }) => {
+const Accordion = ({ title, children }) => {
   const [isActive, setIsActive] = useState(false);
 
   return (
@@ -8,7 +8,7 @@ const Accordion = ({ title, content }) => {
       <div className="accordion-title" onClick={() => setIsActive(!isActive)}>
         <div>{title}</div>
       </div>
-      {isActive && <div className="accordion-content">{content}</div>}
+      {isActive && <div className="accordion-content">{children}</div>}
     </div>
   );
 };
