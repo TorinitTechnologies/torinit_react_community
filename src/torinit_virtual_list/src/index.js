@@ -7,7 +7,7 @@ function VirtualList(props) {
 
   useEffect(() => {
     setItemsToShow(items.slice(startIndex, offset));
-  }, [items.length]);
+  }, [items]);
 
   const onScrollDown = (e) => {
     const bottom =
